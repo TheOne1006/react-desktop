@@ -46,8 +46,12 @@ styles.fadeSpanStyle = {
 
 @Radium
 class Title extends Component {
+  static defaultProps = {
+    customStyle: {}
+  }
   static propTypes = {
     theme: PropTypes.string,
+    customStyle: PropTypes.object,
     title: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.array])
   };
 
@@ -77,9 +81,14 @@ class Title extends Component {
       );
     }
 
+    const customComponentStyle = {
+      ...componentStyle,
+      ...this.props.customStyle
+    }
+
     return (
       <div
-        style={componentStyle}
+        style={customComponentStyle}
       >
         {fadeSpan}
         <span style={titleStyle}>

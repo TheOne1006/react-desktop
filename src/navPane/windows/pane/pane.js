@@ -11,6 +11,7 @@ class Pane extends Component {
     canPaneToggle: PropTypes.bool,
     onPaneToggle: PropTypes.func,
     defaultIsPaneExpanded: PropTypes.bool,
+    topHeaderStyle: PropTypes.object,
     paneCompactedLength: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     paneExpandedLength: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
   };
@@ -19,6 +20,7 @@ class Pane extends Component {
     canPaneToggle: true,
     defaultIsPaneExpanded: true,
     paneCompactedLength: '48px',
+    topHeaderStyle: {},
     paneExpandedLength: '200px'
   };
 
@@ -48,11 +50,16 @@ class Pane extends Component {
       componentStyle.width = paneExpandedLength;
     }
 
+    const headerStyle = {
+      ...styles.padding,
+      ...this.props.topHeaderStyle
+    }
+
     return (
       <div
         style={componentStyle}
       >
-        <div style={styles.padding}/>
+        <div style={headerStyle}/>
         {button}
         {this.renderItems()}
       </div>

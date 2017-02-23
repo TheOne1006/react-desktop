@@ -24,12 +24,16 @@ function applyChildenClasses() {
 @ColorContext()
 @ThemeContext()
 class NavPane extends Component {
+  static defaultProps = {
+    topHeaderStyle: {}
+  }
   static propTypes = {
     ...colorPropTypes,
     ...themePropTypes,
     canPaneToggle: PropTypes.bool,
     onPaneToggle: PropTypes.func,
     defaultIsPaneExpanded: PropTypes.bool,
+    topHeaderStyle: PropTypes.object,
     paneCompactedLength: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     paneExpandedLength: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
   };
@@ -48,6 +52,7 @@ class NavPane extends Component {
           defaultIsPaneExpanded={this.props.defaultIsPaneExpanded}
           paneCompactedLength={this.props.paneCompactedLength}
           paneExpandedLength={this.props.paneExpandedLength}
+          topHeaderStyle={this.props.topHeaderStyle}
         />
         {this.renderContent()}
       </div>

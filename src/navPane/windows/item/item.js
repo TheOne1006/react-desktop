@@ -17,6 +17,9 @@ import { ThemeContext, themePropTypes } from '../../../style/theme/windows';
 @ColorContext()
 @ThemeContext()
 class Item extends Component {
+  static defaultProps = {
+    customTitleStyle: {}
+  }
   static propTypes = {
     ...colorPropTypes,
     ...themePropTypes,
@@ -29,7 +32,8 @@ class Item extends Component {
     push: PropTypes.bool,
     onSelect: PropTypes.func,
     selected: PropTypes.bool,
-    paneTheme: PropTypes.string
+    paneTheme: PropTypes.string,
+    customTitleStyle: PropTypes.object
   };
 
   constructor() {
@@ -46,7 +50,7 @@ class Item extends Component {
   }
 
   render() {
-    const { children, title, paneTheme, ...props } = this.props;
+    const { children, title, paneTheme, customTitleStyle, ...props } = this.props;
 
     delete props.icon;
     delete props.push;
@@ -63,6 +67,7 @@ class Item extends Component {
               key={title}
               title={title}
               theme={paneTheme}
+              customStyle={customTitleStyle}
               prevTitle={this.state.prevTitle}
             />
           </StyleRoot>

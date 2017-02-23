@@ -17,7 +17,10 @@ class TitleBar extends Component {
     ...themePropTypes,
     ...colorPropTypes,
     ...backgroundPropTypes,
-    title: PropTypes.string,
+    title: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.node,
+    ]),
     controls: PropTypes.bool,
     isMaximized: PropTypes.bool,
     onCloseClick: PropTypes.func,
@@ -51,7 +54,7 @@ class TitleBar extends Component {
 
     let componentStyle = { ...styles.titleBar, ...style };
     let titleStyle = styles.title;
-    
+
     if (!isWindowFocused && this.context.theme !== 'dark') {
       titleStyle = { ...titleStyle, ...styles.unfocusedTitle };
     }

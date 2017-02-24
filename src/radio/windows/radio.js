@@ -14,10 +14,17 @@ import ValueRef from '../../ValueRef';
 @ThemeContext()
 @Radium
 class Radio extends Component {
+  static defaultProps = {
+    wrapperStyle: {},
+    customCircleStyle: {}
+  };
+
   static propTypes = {
     ...hiddenPropTypes,
     ...colorPropTypes,
     ...themePropTypes,
+    wrapperStyle: PropTypes.object,
+    customCircleStyle: PropTypes.object,
     label: PropTypes.string,
     onChange: PropTypes.func
   };
@@ -56,7 +63,7 @@ class Radio extends Component {
   };
 
   render() {
-    let { style, label, color, ...props } = this.props;
+    let { style, label, color, wrapperStyle, customCircleStyle, ...props } = this.props;
     let componentStyle = {
       ...styles.radio,
       ...(this.context.theme === 'dark' ? styles['radioDark'] : {})
@@ -64,7 +71,8 @@ class Radio extends Component {
     let labelStyle = styles.label;
     let circleStyle = {
       ...styles.circle,
-      ...(this.context.theme === 'dark' ? styles['circleDark'] : {})
+      ...(this.context.theme === 'dark' ? styles['circleDark'] : {}),
+      ...customCircleStyle
     };
 
     if (this.state.checked) {
@@ -84,7 +92,8 @@ class Radio extends Component {
         circleStyle = {
           ...circleStyle,
           ...styles['circle:active'],
-          ...(this.context.theme === 'dark' ? styles['circleDark:active'] : {})
+          ...(this.context.theme === 'dark' ? styles['circleDark:active'] : {}),
+          ...customCircleStyle
         };
       } else {
         componentStyle = {
@@ -98,7 +107,8 @@ class Radio extends Component {
         circleStyle = {
           ...circleStyle,
           ...styles['circle:hover'],
-          ...(this.context.theme === 'dark' ? styles['circleDark:hover'] : {})
+          ...(this.context.theme === 'dark' ? styles['circleDark:hover'] : {}),
+          ...customCircleStyle
         };
       } else {
         componentStyle = {
@@ -111,8 +121,12 @@ class Radio extends Component {
 
     componentStyle = { ...componentStyle, ...style };
 
+    const containerStyle = {
+      ...styles.container,
+      ...wrapperStyle
+    }
     return (
-      <div style={styles.container}>
+      <div style={containerStyle}>
         <label style={labelStyle}>
           <div style={styles.inputWrapper}>
             <input

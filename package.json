@@ -1,7 +1,7 @@
 {
   "name": "react-desktop-ext",
   "author": "theone",
-  "version": "0.2.17",
+  "version": "0.2.21",
   "description": "React UI Components for macOS Sierra and Windows 10",
   "main": "./index.js",
   "keywords": [

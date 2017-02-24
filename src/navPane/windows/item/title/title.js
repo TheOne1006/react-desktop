@@ -56,7 +56,7 @@ class Title extends Component {
   };
 
   render() {
-    const { title, prevTitle } = this.props;
+    const { title, prevTitle, customStyle } = this.props;
 
     let componentStyle = { ...styles.title };
     let fadeSpanStyle = { ...styles.title };
@@ -83,7 +83,7 @@ class Title extends Component {
 
     const customComponentStyle = {
       ...componentStyle,
-      ...this.props.customStyle
+      ...customStyle
     }
 
     return (
